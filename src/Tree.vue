@@ -413,6 +413,8 @@ export default {
         .classed('node--leaf', d => !hasChildren(d))
         .classed('selected', d => d === selected)
         .on('click', this.onNodeClick)
+        .on('mouseover', this.onNodeOver)
+        .on('mouseleave', this.onNodeLeave)
 
       const { leafTextMargin, nodeTextMargin, layout: {layoutNode}, nodeTextDisplay } = this
       const showNode = filterTextNode(nodeTextDisplay, root)
@@ -473,6 +475,14 @@ export default {
 
     onNodeClick (d) {
       this.onEvent('clickedNode', d)
+    },
+
+    onNodeOver (d) {
+      this.onEvent('mouseNodeOver', d)
+    },
+
+    onNodeLeave (d) {
+      this.onEvent('mouseNodeLeave', d)
     },
 
     onEvent (name, d) {
@@ -736,6 +746,6 @@ export default {
 
 .treeclass {
   max-height: 100%;
-  width: 100%; 
+  width: 100%;
 }
 </style>
